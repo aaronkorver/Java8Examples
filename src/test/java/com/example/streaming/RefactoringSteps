@@ -1,0 +1,62 @@
+IntStream.of(1, 2, 3, 4, 5, 6)
+
+
+.rangeClosed(1,6)
+
+
+
+
+
+numbers.forEach(e -> System.out.println(e * 2));
+
+
+
+
+
+
+numbers.forEach(e -> {
+  int count = 0;
+  for(int i = 1; i <= e; i++) {
+    if(e % i == 0) count++;
+  }
+  System.out.println(count);
+});
+
+
+
+
+
+
+
+public static int countFactors(int number) {
+  int count = 0;
+  for(int i = 1; i <= number; i++) {
+    if(number % i == 0) count++;
+  }
+  return count;
+}
+
+
+
+
+
+numbers.forEach(e -> System.out.println(countFactors(e)));
+
+
+
+
+
+
+public static long countFactors(int number) {
+
+  IntPredicate isDivisible = index -> number % index == 0;
+
+  return IntStream.rangeClosed(1, number)
+                  .filter(isDivisible)
+                  .count();
+}
+
+
+numbers.stream()
+        .map(LambdaRefactoringExample::countFactors)
+        .forEach(System.out::println);
